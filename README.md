@@ -1,5 +1,7 @@
 # beancount-lalitm
 
+[![PyPI](https://img.shields.io/pypi/v/beancount-lalitm)](https://pypi.org/project/beancount-lalitm/)
+
 Importers and plugins for [Beancount](https://beancount.github.io/) plain-text accounting.
 
 > **Disclaimer:** I am not a tax professional or financial advisor. This code is provided as-is for personal use. The `uk_cgt_lots` plugin in particular implements my understanding of UK Capital Gains Tax rules, which may be incomplete or incorrect. Use at your own risk.
