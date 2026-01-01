@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexQueryResponse queryName="Test" type="AF">
+  <FlexStatements count="1">
+    <FlexStatement accountId="U1234567" fromDate="2024-01-01" toDate="2024-01-31">
+      <CashTransactions>
+        <CashTransaction
+          transactionID="123456789"
+          reportDate="15-Jan-24"
+          type="Deposits/Withdrawals"
+          amount="1000.00"
+          currency="USD"
+          symbol=""
+          description="Electronic Fund Transfer"
+        />
+        <CashTransaction
+          transactionID="123456790"
+          reportDate="20-Jan-24"
+          type="Dividends"
+          amount="10.50"
+          currency="USD"
+          symbol="AAPL"
+          description="AAPL(US0378331005) Cash Dividend"
+        />
+      </CashTransactions>
+      <Trades>
+        <Trade
+          transactionID="987654321"
+          tradeDate="10-Jan-24"
+          assetCategory="STK"
+          symbol="AAPL"
+          buySell="BUY"
+          quantity="10"
+          tradePrice="185.50"
+          proceeds="-1855.00"
+          currency="USD"
+          ibCommission="-1.00"
+          ibCommissionCurrency="USD"
+        />
+      </Trades>
+      <CorporateActions/>
+    </FlexStatement>
+  </FlexStatements>
+</FlexQueryResponse>

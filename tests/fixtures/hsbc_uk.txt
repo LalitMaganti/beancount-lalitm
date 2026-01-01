@@ -1,0 +1,14 @@
+HSBC UK Bank Statement
+
+Account: 12345678
+Period: 01 January 2024 to 31 January 2024
+
+Date      Payment type and details                       Paid out     Paid in      Balance
+
+          BALANCE BROUGHT FORWARD                                                  1,000.00
+
+15 Jan 24 VIS TESCO STORES                                   50.00                   950.00
+20 Jan 24 TFR SALARY PAYMENT                                            2,500.00   3,450.00
+25 Jan 24 DD  BRITISH GAS                                   100.00                 3,350.00
+
+          BALANCE CARRIED FORWARD                                                  3,350.00

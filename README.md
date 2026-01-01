@@ -16,6 +16,67 @@ pip install beancount-lalitm[excel]   # Excel-based importers
 pip install beancount-lalitm[all]     # All optional dependencies
 ```
 
+## Usage
+
+There are two ways to use these importers, depending on the account type:
+
+### Investment Accounts (Fully Automated)
+
+Investment importers can run directly via beangulp since no categorization is needed.
+
+Create an `import.py`:
+
+```python
+#!/usr/bin/env python3
+"""Beancount import configuration for investments."""
+from beancount import loader
+from beancount_tools.importers.account_lookup import AccountOracle
+from beancount_tools.importers.ib import IbImporter
+
+entries, errors, options = loader.load_file('main.beancount')
+
+ib_oracle = AccountOracle(
+    account='Lalit:US:IB:Brokerage',
+    entries=entries,
+    transfers_account='Assets:Lalit:US:IB:Transfers',
+)
+
+CONFIG = [
+    IbImporter(account_currency='USD', account_oracle=ib_oracle),
+]
+```
+
+Run directly with beangulp:
+
+```bash
+python import.py extract ~/Downloads/ib-flex-query.xml >> investments.beancount
+```
+
+### Bank Accounts (Semi-Automated)
+
+Bank and credit card importers require categorization. Use [beancount-import](https://github.com/jbms/beancount-import) for a web UI that learns from your previous choices.
+
+```python
+#!/usr/bin/env python3
+"""Beancount import configuration for banks."""
+from beancount_tools.importers.hsbc import HsbcImporter
+from beancount_tools.importers.hsbc_uk_cc import HsbcUkCcImporter
+
+CONFIG = [
+    HsbcImporter(account='Assets:Lalit:UK:HSBC:Current'),
+    HsbcUkCcImporter(account='Liabilities:Lalit:UK:HSBC:CreditCard'),
+]
+```
+
+Run the beancount-import web UI:
+
+```bash
+python -m beancount_import.webserver \
+    --journal journal.beancount \
+    --ignored_path ignored.beancount \
+    --account_filter '^Assets:Lalit:UK:HSBC'
+```
+
 ## Importers
 
 ### Investment Platforms
