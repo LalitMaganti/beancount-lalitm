@@ -37,7 +37,7 @@ class TestAccountOracle:
     """Tests for AccountOracle helper class."""
 
     def test_instantiation(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.account_lookup import AccountOracle
 
         oracle = AccountOracle(
             account='Lalit:US:IB:Brokerage',
@@ -46,7 +46,7 @@ class TestAccountOracle:
         assert oracle is not None
 
     def test_cash_account(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.account_lookup import AccountOracle
 
         oracle = AccountOracle(
             account='Lalit:US:IB:Brokerage',
@@ -55,7 +55,7 @@ class TestAccountOracle:
         assert oracle.cash_account() == 'Assets:Lalit:US:IB:Brokerage:Cash'
 
     def test_asset_account(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.account_lookup import AccountOracle
 
         oracle = AccountOracle(
             account='Lalit:US:IB:Brokerage',
@@ -64,7 +64,7 @@ class TestAccountOracle:
         assert oracle.asset_account('AAPL') == 'Assets:Lalit:US:IB:Brokerage:AAPL'
 
     def test_distribution_account_with_commodity_metadata(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.account_lookup import AccountOracle
         from beancount.core.data import new_metadata
 
         commodity = Commodity(
@@ -80,7 +80,7 @@ class TestAccountOracle:
             'Revenues:Lalit:US:IB:Brokerage:AAPL:Dividends'
 
     def test_transfers_account_raises_when_not_configured(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.account_lookup import AccountOracle
 
         oracle = AccountOracle(
             account='Lalit:US:IB:Brokerage',
@@ -90,7 +90,7 @@ class TestAccountOracle:
             oracle.transfers_account()
 
     def test_transfers_account_when_configured(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.account_lookup import AccountOracle
 
         oracle = AccountOracle(
             account='Lalit:US:IB:Brokerage',
@@ -100,7 +100,7 @@ class TestAccountOracle:
         assert oracle.transfers_account() == 'Assets:Transfers'
 
     def test_commission_account(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.account_lookup import AccountOracle
 
         oracle = AccountOracle(
             account='Lalit:US:IB:Brokerage',
@@ -110,7 +110,7 @@ class TestAccountOracle:
             'Expenses:Lalit:US:IB:Brokerage:AAPL:Commissions'
 
     def test_capital_gains_account(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.account_lookup import AccountOracle
 
         oracle = AccountOracle(
             account='Lalit:US:IB:Brokerage',
@@ -120,7 +120,7 @@ class TestAccountOracle:
             'Revenues:Lalit:US:IB:Brokerage:AAPL:Capital-Gains'
 
     def test_withholding_taxes_account(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.account_lookup import AccountOracle
 
         oracle = AccountOracle(
             account='Lalit:US:IB:Brokerage',
@@ -134,20 +134,20 @@ class TestHsbcUkCcImporter:
     """Tests for HSBC UK Credit Card importer."""
 
     def test_instantiation(self):
-        from beancount_tools.importers.hsbc_uk_cc import HsbcUkCcImporter
+        from beancount_lalitm.importers.hsbc_uk_cc import HsbcUkCcImporter
 
         importer = HsbcUkCcImporter(account='Liabilities:HSBC:CreditCard')
         assert importer.account == 'Liabilities:HSBC:CreditCard'
 
     def test_identify_json_file(self):
-        from beancount_tools.importers.hsbc_uk_cc import HsbcUkCcImporter
+        from beancount_lalitm.importers.hsbc_uk_cc import HsbcUkCcImporter
 
         importer = HsbcUkCcImporter(account='Liabilities:HSBC:CreditCard')
         file = MockFileMemo(FIXTURES / 'hsbc_uk_cc.json')
         assert importer.identify(file) is True
 
     def test_identify_non_json_file(self):
-        from beancount_tools.importers.hsbc_uk_cc import HsbcUkCcImporter
+        from beancount_lalitm.importers.hsbc_uk_cc import HsbcUkCcImporter
 
         importer = HsbcUkCcImporter(account='Liabilities:HSBC:CreditCard')
         file = MockFileMemo(FIXTURES / 'hsbc_uk.txt')
@@ -158,20 +158,20 @@ class TestHsbcImporter:
     """Tests for HSBC UK current account importer."""
 
     def test_instantiation(self):
-        from beancount_tools.importers.hsbc import HsbcImporter
+        from beancount_lalitm.importers.hsbc import HsbcImporter
 
         importer = HsbcImporter(account='Assets:HSBC:Current')
         assert importer.account == 'Assets:HSBC:Current'
 
     def test_identify_txt_file(self):
-        from beancount_tools.importers.hsbc import HsbcImporter
+        from beancount_lalitm.importers.hsbc import HsbcImporter
 
         importer = HsbcImporter(account='Assets:HSBC:Current')
         file = MockFileMemo(FIXTURES / 'hsbc_uk.txt')
         assert importer.identify(file) is True
 
     def test_identify_non_txt_file(self):
-        from beancount_tools.importers.hsbc import HsbcImporter
+        from beancount_lalitm.importers.hsbc import HsbcImporter
 
         importer = HsbcImporter(account='Assets:HSBC:Current')
         file = MockFileMemo(FIXTURES / 'hsbc_uk_cc.json')
@@ -182,8 +182,8 @@ class TestIbImporter:
     """Tests for Interactive Brokers importer."""
 
     def test_instantiation(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
-        from beancount_tools.importers.ib import IbImporter
+        from beancount_lalitm.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.ib import IbImporter
 
         oracle = AccountOracle(
             account='Lalit:US:IB:Brokerage',
@@ -194,8 +194,8 @@ class TestIbImporter:
         assert importer.account_currency == 'USD'
 
     def test_identify_flex_query_xml(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
-        from beancount_tools.importers.ib import IbImporter
+        from beancount_lalitm.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.ib import IbImporter
 
         oracle = AccountOracle(
             account='Lalit:US:IB:Brokerage',
@@ -207,8 +207,8 @@ class TestIbImporter:
         assert importer.identify(file) is True
 
     def test_identify_non_xml_file(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
-        from beancount_tools.importers.ib import IbImporter
+        from beancount_lalitm.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.ib import IbImporter
 
         oracle = AccountOracle(
             account='Lalit:US:IB:Brokerage',
@@ -221,8 +221,8 @@ class TestIbImporter:
 
     def test_extract_transactions(self):
         from beancount.core.data import new_metadata
-        from beancount_tools.importers.account_lookup import AccountOracle
-        from beancount_tools.importers.ib import IbImporter
+        from beancount_lalitm.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.ib import IbImporter
 
         # Create commodity for AAPL with distribution type
         commodity = Commodity(
@@ -262,7 +262,7 @@ class TestHsbcUsCcImporter:
     """Tests for HSBC US Credit Card importer."""
 
     def test_instantiation(self):
-        from beancount_tools.importers.hsbc_us_cc import HsbcUsCcImporter
+        from beancount_lalitm.importers.hsbc_us_cc import HsbcUsCcImporter
 
         importer = HsbcUsCcImporter(account='Liabilities:HSBC:US:CreditCard')
         assert importer.account == 'Liabilities:HSBC:US:CreditCard'
@@ -272,7 +272,7 @@ class TestHsbcUsCheckingImporter:
     """Tests for HSBC US Checking importer."""
 
     def test_instantiation(self):
-        from beancount_tools.importers.hsbc_us_checking import HsbcUsCheckingImporter
+        from beancount_lalitm.importers.hsbc_us_checking import HsbcUsCheckingImporter
 
         importer = HsbcUsCheckingImporter(account='Assets:HSBC:US:Checking')
         assert importer.account == 'Assets:HSBC:US:Checking'
@@ -282,8 +282,8 @@ class TestVanguardImporter:
     """Tests for Vanguard UK importer."""
 
     def test_instantiation(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
-        from beancount_tools.importers.vanguard import VanguardImporter, SheetMatcher
+        from beancount_lalitm.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.vanguard import VanguardImporter, SheetMatcher
 
         oracle = AccountOracle(
             account='Lalit:UK:Vanguard:ISA',
@@ -303,8 +303,8 @@ class TestIgImporter:
     """Tests for IG Trading importer."""
 
     def test_instantiation(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
-        from beancount_tools.importers.ig import IgImporter
+        from beancount_lalitm.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.ig import IgImporter
 
         oracle = AccountOracle(
             account='Lalit:UK:IG:Trading',
@@ -324,8 +324,8 @@ class TestAjBellImporters:
     """Tests for AJ Bell importers."""
 
     def test_transactions_importer_instantiation(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
-        from beancount_tools.importers.ajbell import AjTransactionsImporter
+        from beancount_lalitm.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.ajbell import AjTransactionsImporter
 
         oracle = AccountOracle(
             account='Lalit:UK:AJBell:ISA',
@@ -339,8 +339,8 @@ class TestAjBellImporters:
         assert importer is not None
 
     def test_cash_importer_instantiation(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
-        from beancount_tools.importers.ajbell import AjCashImporter
+        from beancount_lalitm.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.ajbell import AjCashImporter
 
         oracle = AccountOracle(
             account='Lalit:UK:AJBell:ISA',
@@ -359,8 +359,8 @@ class TestAvivaPensionImporter:
     """Tests for Aviva Pension importer."""
 
     def test_instantiation(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
-        from beancount_tools.importers.aviva import AvivaPensionImporter
+        from beancount_lalitm.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.aviva import AvivaPensionImporter
 
         oracle = AccountOracle(
             account='Lalit:UK:Aviva:Pension',
@@ -374,8 +374,8 @@ class TestSchwabEacImporter:
     """Tests for Schwab Equity Award Center importer."""
 
     def test_instantiation(self):
-        from beancount_tools.importers.account_lookup import AccountOracle
-        from beancount_tools.importers.schwab_eac import SchwabEacImporter
+        from beancount_lalitm.importers.account_lookup import AccountOracle
+        from beancount_lalitm.importers.schwab_eac import SchwabEacImporter
 
         oracle = AccountOracle(
             account='Lalit:US:Schwab:EAC',
@@ -396,7 +396,7 @@ class TestGooglePayslipImporter:
     """Tests for Google UK Payslip importer."""
 
     def test_instantiation(self):
-        from beancount_tools.importers.google import GooglePayslipImporter
+        from beancount_lalitm.importers.google import GooglePayslipImporter
 
         importer = GooglePayslipImporter(
             gross_salary_revenue_account='Revenues:Salary:Google:Gross',

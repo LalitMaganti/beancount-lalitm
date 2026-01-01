@@ -28,7 +28,7 @@ from beancount.core.data import Transaction
 from beangulp import importer
 import pandas as pd
 
-from beancount_tools.importers.account_lookup import AccountOracle
+from beancount_lalitm.importers.account_lookup import AccountOracle
 
 
 def find(lines: list[str], pattern: str) -> int:

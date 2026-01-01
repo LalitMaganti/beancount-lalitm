@@ -34,7 +34,7 @@ from beancount.core.data import Entries
 from beancount.core.data import new_metadata
 from beancount.core.data import Open
 
-from beancount_tools.importers.account_lookup import AccountOracle
+from beancount_lalitm.importers.account_lookup import AccountOracle
 
 __plugins__ = ['ancillary_accounts']
 

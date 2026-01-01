@@ -31,7 +31,7 @@ from typing import Callable
 from typing import Any
 import yaml
 
-from beancount_tools.importers.account_lookup import AccountOracle
+from beancount_lalitm.importers.account_lookup import AccountOracle
 
 __plugins__ = ['uk_cgt_lots']
 

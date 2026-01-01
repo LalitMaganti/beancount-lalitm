@@ -27,9 +27,10 @@ Create an `import.py`:
 ```python
 #!/usr/bin/env python3
 """Beancount import configuration for investments."""
+import beangulp
 from beancount import loader
-from beancount_tools.importers.account_lookup import AccountOracle
-from beancount_tools.importers.ib import IbImporter
+from beancount_lalitm.importers.account_lookup import AccountOracle
+from beancount_lalitm.importers.ib import IbImporter
 
 entries, errors, options = loader.load_file('main.beancount')
 
@@ -42,6 +43,9 @@ ib_oracle = AccountOracle(
 CONFIG = [
     IbImporter(account_currency='USD', account_oracle=ib_oracle),
 ]
+
+if __name__ == '__main__':
+    beangulp.Ingest(CONFIG)()
 ```
 
 Run directly with beangulp:
@@ -57,8 +61,8 @@ Bank and credit card importers require categorization. Use [beancount-import](ht
 ```python
 #!/usr/bin/env python3
 """Beancount import configuration for banks."""
-from beancount_tools.importers.hsbc import HsbcImporter
-from beancount_tools.importers.hsbc_uk_cc import HsbcUkCcImporter
+from beancount_lalitm.importers.hsbc import HsbcImporter
+from beancount_lalitm.importers.hsbc_uk_cc import HsbcUkCcImporter
 
 CONFIG = [
     HsbcImporter(account='Assets:Lalit:UK:HSBC:Current'),
@@ -113,7 +117,7 @@ Add plugins to your beancount file with the `plugin` directive.
 Auto-creates companion accounts for investment securities (commissions, dividends, capital gains, withholding tax).
 
 ```beancount
-plugin "beancount_tools.plugins.ancillary_accounts"
+plugin "beancount_lalitm.plugins.ancillary_accounts"
 
 2024-01-01 open Assets:Broker:AAPL  AAPL
   ancillary_commission_currency: USD
@@ -126,7 +130,7 @@ plugin "beancount_tools.plugins.ancillary_accounts"
 Adjusts historical transactions for stock splits.
 
 ```beancount
-plugin "beancount_tools.plugins.stock_split" "
+plugin "beancount_lalitm.plugins.stock_split" "
   splits:
     - symbol: GOOG
       date: 2022-07-15
@@ -139,7 +143,7 @@ plugin "beancount_tools.plugins.stock_split" "
 UK Capital Gains Tax lot matching using Section 104 pooling.
 
 ```beancount
-plugin "beancount_tools.plugins.uk_cgt_lots" "
+plugin "beancount_lalitm.plugins.uk_cgt_lots" "
   accounts:
     - name: Person:UK:Broker:GIA
       taxable: true

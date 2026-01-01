@@ -22,7 +22,7 @@ import datetime
 from decimal import Decimal
 import xmltodict
 
-from beancount_tools.importers.account_lookup import AccountOracle
+from beancount_lalitm.importers.account_lookup import AccountOracle
 
 
 def process_cash_transaction(

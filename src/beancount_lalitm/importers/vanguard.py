@@ -19,7 +19,7 @@ from decimal import Decimal
 import pandas as pd
 import sys
 
-from beancount_tools.importers.account_lookup import AccountOracle
+from beancount_lalitm.importers.account_lookup import AccountOracle
 
 
 def process_cash_transaction(

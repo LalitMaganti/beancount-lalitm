@@ -15,7 +15,7 @@ import os
 import pandas as pd
 import re
 
-from beancount_tools.importers.account_lookup import AccountOracle
+from beancount_lalitm.importers.account_lookup import AccountOracle
 
 
 class SchwabEacImporter(importer.Importer):

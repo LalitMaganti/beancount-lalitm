@@ -48,7 +48,7 @@ Homepage = "https://github.com/LalitMaganti/beancount-lalitm"
 Repository = "https://github.com/LalitMaganti/beancount-lalitm"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/beancount_tools"]
+packages = ["src/beancount_lalitm"]
 
 [dependency-groups]
 dev = [
