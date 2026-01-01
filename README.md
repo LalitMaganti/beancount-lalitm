@@ -16,9 +16,7 @@ pip install beancount-lalitm[excel]   # Excel-based importers
 pip install beancount-lalitm[all]     # All optional dependencies
 ```
 
-## Usage
-
-There are two ways to use these importers, depending on the account type:
+## Importers
 
 ### Investment Accounts (Fully Automated)
 
@@ -77,9 +75,9 @@ python -m beancount_import.webserver \
     --account_filter '^Assets:Lalit:UK:HSBC'
 ```
 
-## Importers
+### Available Importers
 
-### Investment Platforms
+#### Investment Platforms
 
 | Importer | Description | Input Format |
 |----------|-------------|--------------|
@@ -91,7 +89,7 @@ python -m beancount_import.webserver \
 | `AjCashImporter` | AJ Bell cash history | CSV |
 | `AvivaPensionImporter` | Aviva pension | Text (PDF converted) |
 
-### Banks
+#### Banks
 
 | Importer | Description | Input Format |
 |----------|-------------|--------------|
@@ -100,13 +98,15 @@ python -m beancount_import.webserver \
 | `HsbcUsCcImporter` | HSBC US credit card | JSON |
 | `HsbcUsCheckingImporter` | HSBC US checking | Text (PDF converted) |
 
-### Payroll
+#### Payroll
 
 | Importer | Description | Input Format |
 |----------|-------------|--------------|
 | `GooglePayslipImporter` | Google UK payslips | Text (PDF converted) |
 
 ## Plugins
+
+Add plugins to your beancount file with the `plugin` directive.
 
 ### ancillary_accounts
 
